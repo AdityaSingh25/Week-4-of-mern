@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input placeholder="Enter 1st number" type="number" id="num1" />
+    <br />
+    <br />
+    <input placeholder="Enter 2nd number" type="number" id="num2" />
+    <br />
+    <br />
+    <div id="result"></div>
+    <br />
+    <br />
+    <br />
+    <button id="btn" onclick="populateDiv2()">Add</button>
+    <script>
+      const num1 = document.getElementById("num1");
+      const num2 = document.getElementById("num2");
+      const btn = document.getElementById("btn");
+      const result = document.getElementById("result");
+
+      //   function populateDiv() {
+      //     fetch("https://sum-server.100xdevs.com/sum?a=1&b=2000").then(function (
+      //       response
+      //     ) {
+      //       console.log(response);
+
+      //       response.text().then(function (text) {
+      //         document.getElementById("result").innerText = text;
+      //       });
+      //     });
+      //     // result.innerText = `Result: ${
+      //     //   parseInt(num1.value) + parseInt(num2.value)
+      //     // }`;
+      //   }
+
+      //using async await
+
+      async function populateDiv2() {
+        const a = document.getElementById("num1").value;
+        const b = document.getElementById("num2").value;
+
+        try {
+          const response = await fetch(
+            `http://localhost:3000/sum?a=${a}&b=${b}`
+          );
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+          const text = await response.text();
+          document.getElementById("result").innerText = text;
+        } catch (error) {
+          document.getElementById(
+            "result"
+          ).innerText = `Error: ${error.message}`;
+        }
+      }
+    </script>
+  </body>
+</html>

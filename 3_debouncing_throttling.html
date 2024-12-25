@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      oninput="debouncePopulateDiv()"
+      placeholder="Enter 1st number"
+      type="number"
+      id="num1"
+    />
+    <br />
+    <br />
+    <input
+      oninput="debouncePopulateDiv()"
+      placeholder="Enter 2nd number"
+      type="number"
+      id="num2"
+    />
+    <br />
+    <br />
+    <div id="result"></div>
+    <script>
+      let timeout;
+      function debouncePopulateDiv() {
+        clearTimeout(timeout);
+        //delay the call to poplutateDiv2 by 100 ms
+        timeout = setTimeout(populateDiv2, 1000); // it is returning a number, if the settimeout runs completely then it will not return anything
+        // but while waiting to run populateDiv2, it will return a number and if that number is passed to clearTimeout, it will clear the timeout
+        // so that populateDiv2 will not run
+      }
+
+      const result = document.getElementById("result");
+
+      async function populateDiv2() {
+        const a = document.getElementById("num1").value;
+        const b = document.getElementById("num2").value;
+
+        try {
+          const response = await fetch(
+            `http://localhost:3000/sum?a=${a}&b=${b}`
+          );
+          const text = await response.text();
+          document.getElementById("result").innerText = text;
+        } catch (error) {
+          document.getElementById(
+            "result"
+          ).innerText = `Error: ${error.message}`;
+        }
+      }
+
+      //timeout = setTimeout(populateDiv2, 1000); settimeout will return this timeout synchronously and it will be stored in timeout
+    </script>
+  </body>
+</html>
