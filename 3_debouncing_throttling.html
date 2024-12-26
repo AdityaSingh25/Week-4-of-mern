@@ -28,7 +28,8 @@
       function debouncePopulateDiv() {
         clearTimeout(timeout);
         //delay the call to poplutateDiv2 by 100 ms
-        timeout = setTimeout(populateDiv2, 1000); // it is returning a number, if the settimeout runs completely then it will not return anything
+        timeout = setTimeout(populateDiv2, 1000);
+        // it is returning a number, if the settimeout runs completely then it will not return anything
         // but while waiting to run populateDiv2, it will return a number and if that number is passed to clearTimeout, it will clear the timeout
         // so that populateDiv2 will not run
       }
