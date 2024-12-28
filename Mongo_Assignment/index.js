@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 //app.use new way, it tells that any request comes to /admin/anything*** to to adminRouter, similar way any request to /user/anything ->> go to userRouter
 
 app.use("/admin", adminRouter);
-//app.use("/user", userRouter);
+app.use("/user", userRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {

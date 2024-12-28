@@ -18,6 +18,10 @@ router.post("/signup", async (req, res) => {
   });
 });
 
+
+
+
+
 router.post("/courses", adminMiddleware, async (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
@@ -37,6 +41,10 @@ router.post("/courses", adminMiddleware, async (req, res) => {
     courseId: newCourse._id,
   });
 });
+
+
+
+
 
 router.get("/courses", adminMiddleware, async (req, res) => {
   const allCourse = await Course.find({});
