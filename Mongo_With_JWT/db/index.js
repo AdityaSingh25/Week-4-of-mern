@@ -1,9 +1,7 @@
-const express = require("express");
-
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://admin:Shubh%401234@cluster0.gk9ec.mongodb.net/Mongo_assignment"
+  "mongodb+srv://admin:Shubh%401234@cluster0.gk9ec.mongodb.net/MongoWithJWT"
 );
 
 const AdminSchema = new mongoose.Schema({
